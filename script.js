@@ -109,7 +109,7 @@ function daysValidation(input) {
         errorEl.innerText = "Number of days of parking is required for submission"
         document.getElementById("days-field").appendChild(errorEl)
         input.classList.remove("valid");
-    } else if (Number(input.value) === NaN) {
+    } else if (isNaN(input.value)) {
         errorEl.innerText = "Number of days of parking should be a number"
         document.getElementById("days-field").appendChild(errorEl)
         input.classList.remove("valid");
@@ -139,9 +139,22 @@ function ccValidation(input) {
 function cvvValidation(input) {
     errorEl = createErrorElement(input);
     if (input.value === "") {
-        errorEl.innerText = "CVV is required for submission"
-        document.getElementById("cvv-field").appendChild(errorEl)
+        errorEl.innerText = "CVV is required for submission";
+        document.getElementById("cvv-field").appendChild(errorEl);
         input.classList.remove("valid");
+    } else if (isNaN(input.value)) {
+        errorEl.innerText = "CVV should be a number";
+        document.getElementById("cvv-field").appendChild(errorEl);
+        input.classList.remove("valid");
+        input.classList.add("invalid");
+    } else if (input.value.length !== 3) {
+        errorEl.innerText = "CVV should be three digits";
+        document.getElementById("cvv-field").appendChild(errorEl);
+        input.classList.remove("valid");
+        input.classList.add("invalid");
+    } else {
+        input.classList.remove("valid");
+        input.classList.add("invalid");
     }
 }
 
