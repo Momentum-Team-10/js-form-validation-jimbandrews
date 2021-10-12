@@ -11,6 +11,7 @@ let daysInput = document.getElementById('days');
 let ccInput = document.getElementById('credit-card');
 let cvvInput = document.getElementById('cvv');
 let expirationInput = document.getElementById('expiration');
+let total = document.getElementById('total');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -23,6 +24,12 @@ form.addEventListener('submit', (event) => {
     ccValidation(ccInput);
     cvvValidation(cvvInput);
     expirationValidation(expirationInput);
+    let validNum = document.querySelectorAll(".valid")
+    console.log(validNum)
+    if (validNum.length === 9) {
+        let totalCost = document.createTextNode("$" + String(Number(days.input)*5));
+        total.appendChild(totalCost);
+    }
 })
 
 
@@ -40,7 +47,8 @@ function createErrorElement(input) {
 function nameValidation(input) {
     let errorEl = createErrorElement(input);
     if (input.value) {
-        console.log("success")
+        input.classList.remove("invalid");
+        input.classList.add("valid");
     } else {
         errorEl.innerText = "Name is required for submission"
         document.getElementById("name-field").appendChild(errorEl)
@@ -76,9 +84,11 @@ function carYearValidation(input) {
 function carMakeValidation(input) {
     errorEl = createErrorElement(input);
     if (input.value === "") {
-        errorEl.innerText = "Car make is required for submission"
-        document.getElementById("car-field").appendChild(errorEl)
+        errorEl.innerText = "Car make is required for submission";
+        document.getElementById("car-field").appendChild(errorEl);
         input.classList.remove("valid");
+    } else {
+        input.classList.add("valid");
     }
 }
 
@@ -86,9 +96,11 @@ function carMakeValidation(input) {
 function carModelValidation(input) {
     errorEl = createErrorElement(input);
     if (input.value === "") {
-        errorEl.innerText = "Car model is required for submission"
-        document.getElementById("car-field").appendChild(errorEl)
+        errorEl.innerText = "Car model is required for submission";
+        document.getElementById("car-field").appendChild(errorEl);
         input.classList.remove("valid");
+    } else {
+        input.classList.add("valid");
     }
 }
 
@@ -96,9 +108,11 @@ function carModelValidation(input) {
 function startValidation(input) {
     errorEl = createErrorElement(input);
     if (input.value === "") {
-        errorEl.innerText = "Start Date is required for submission"
-        document.getElementById("start-date-field").appendChild(errorEl)
+        errorEl.innerText = "Start Date is required for submission";
+        document.getElementById("start-date-field").appendChild(errorEl);
         input.classList.remove("valid");
+    } else {
+        input.classList.add("valid");
     }
 }
 
@@ -106,19 +120,19 @@ function startValidation(input) {
 function daysValidation(input) {
     errorEl = createErrorElement(input);
     if (input.value === "") {
-        errorEl.innerText = "Number of days of parking is required for submission"
-        document.getElementById("days-field").appendChild(errorEl)
+        errorEl.innerText = "Number of days of parking is required for submission";
+        document.getElementById("days-field").appendChild(errorEl);
         input.classList.remove("valid");
     } else if (isNaN(input.value)) {
-        errorEl.innerText = "Number of days of parking should be a number"
-        document.getElementById("days-field").appendChild(errorEl)
+        errorEl.innerText = "Number of days of parking should be a number";
+        document.getElementById("days-field").appendChild(errorEl);
         input.classList.remove("valid");
         input.classList.add("invalid")
     } else if (Number(input.value)<1 || Number(input.value)>30) {
-        errorEl.innerText = "Please select a number from 1 to 30"
-        document.getElementById("days-field").appendChild(errorEl)
+        errorEl.innerText = "Please select a number from 1 to 30";
+        document.getElementById("days-field").appendChild(errorEl);
         input.classList.remove("valid");
-        input.classList.add("invalid")
+        input.classList.add("invalid");
     } else {
         input.classList.remove("valid");
         input.classList.add("invalid");
@@ -132,6 +146,8 @@ function ccValidation(input) {
         errorEl.innerText = "Credit card number is required for submission"
         document.getElementById("credit-card-field").appendChild(errorEl)
         input.classList.remove("valid");
+    } else {
+        input.classList.add("valid");
     }
 }
 
@@ -165,5 +181,7 @@ function expirationValidation(input) {
         errorEl.innerText = "Credit card expiration is required for submission"
         document.getElementById("expiration-field").appendChild(errorEl)
         input.classList.remove("valid");
+    } else {
+        input.classList.add("valid")
     }
 }
