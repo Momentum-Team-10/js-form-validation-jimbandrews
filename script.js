@@ -25,9 +25,8 @@ form.addEventListener('submit', (event) => {
     cvvValidation(cvvInput);
     expirationValidation(expirationInput);
     let validNum = document.querySelectorAll(".valid")
-    console.log(validNum)
     if (validNum.length === 9) {
-        let totalCost = document.createTextNode("$" + String(Number(days.input)*5));
+        let totalCost = document.createTextNode("$" + String(Number(daysInput.value)*5));
         total.appendChild(totalCost);
     }
 })
@@ -53,6 +52,7 @@ function nameValidation(input) {
         errorEl.innerText = "Name is required for submission"
         document.getElementById("name-field").appendChild(errorEl)
         input.classList.remove("valid");
+        input.classList.add("invalid")
     }
 }
 
@@ -134,8 +134,8 @@ function daysValidation(input) {
         input.classList.remove("valid");
         input.classList.add("invalid");
     } else {
-        input.classList.remove("valid");
-        input.classList.add("invalid");
+        input.classList.remove("invalid");
+        input.classList.add("valid");
     }
 }
 
@@ -169,8 +169,8 @@ function cvvValidation(input) {
         input.classList.remove("valid");
         input.classList.add("invalid");
     } else {
-        input.classList.remove("valid");
-        input.classList.add("invalid");
+        input.classList.remove("invalid");
+        input.classList.add("valid");
     }
 }
 

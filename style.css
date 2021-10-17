@@ -39,19 +39,19 @@
   margin-right: 0;
 }
 
-.input-invalid > label {
+.invalid > label {
     color: #DC2626;
 }
 
-.input-invalid > input {
-  border-color:  #DC2626;
+input.invalid {
+  border: 4px solid #DC2626;
 }
 
-.input-valid > label {
+.valid > label {
   color: #22C55E
 }
 
-.input-valid > input {
+input.valid {
   border-color: #22C55E;
 }
 
